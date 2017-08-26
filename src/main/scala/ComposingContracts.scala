@@ -1,5 +1,6 @@
 import java.time.LocalDate
 
+
 /** *
   *
   * @author Shahbaz Chaudhary (shahbazc gmail com)
@@ -24,17 +25,26 @@ package ComposingContracts {
   abstract class Obs[A] {
 
     def +(that: Obs[A])(implicit n: Numeric[A]): Obs[A] = Lift2(n.plus, this, that)
+
     def -(that: Obs[A])(implicit n: Numeric[A]): Obs[A] = Lift2(n.minus, this, that)
+
     def *(that: Obs[A])(implicit n: Numeric[A]): Obs[A] = Lift2(n.times, this, that)
+
     //http://stackoverflow.com/questions/6188990/writing-a-generic-mean-function-in-scala
     //def /(that:Obs[A])(implicit n: Numeric[A]):Obs[A] = Lift2Obs((a:A,b:A)=> n.times(a,1.0/b), this,that)
 
     def ==(that: Obs[A])(implicit n: Ordering[A]): Obs[Boolean] = Lift2((a: A, b: A) => n.==(a, b), this, that)
+
     def !=(that: Obs[A])(implicit n: Ordering[A]): Obs[Boolean] = Lift2((a: A, b: A) => n.!=(a, b), this, that)
+
     def >(that: Obs[A])(implicit n: Ordering[A]): Obs[Boolean] = Lift2((a: A, b: A) => n.gt(a, b), this, that)
+
     def <(that: Obs[A])(implicit n: Ordering[A]): Obs[Boolean] = Lift2((a: A, b: A) => n.lt(a, b), this, that)
+
     def >=(that: Obs[A])(implicit n: Ordering[A]): Obs[Boolean] = Lift2((a: A, b: A) => n.gteq(a, b), this, that)
+
     def <=(that: Obs[A])(implicit n: Ordering[A]): Obs[Boolean] = Lift2((a: A, b: A) => n.lteq(a, b), this, that)
+
     //def &&(that:Obs[Boolean])(implicit n: Boolean[A]):Obs[Boolean] = Lift2Obs((a:Boolean,b:Boolean)=> a.&&(b), this,that)
 
   }

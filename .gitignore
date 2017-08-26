@@ -1,5 +1,7 @@
 *.class
 *.log
+project/.boot/
+project/.ivy/
 
 # sbt specific
 .cache/
@@ -19,7 +21,3 @@ project/plugins/project/
 *.iml
 .settings/
 
-.cache
-.cache-main
-.cache-tests
-/bin/
